@@ -41,6 +41,7 @@ export default function Wallets() {
   const previousAccount = usePrevious(account);
 
   const [walletDialogIsOpen, setWalletDialogIsOpen] = useWalletDialog();
+  console.log('walletDialogIsOpen:', walletDialogIsOpen);
 
   const theme = useTheme();
   const [isDesktop] = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);

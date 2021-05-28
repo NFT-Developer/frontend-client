@@ -1,30 +1,39 @@
-import { Box, Center, useColorModeValue } from '@chakra-ui/react';
-import * as React from 'react';
+import { Box, Center, Button } from '@chakra-ui/react';
+import { useWalletDialog } from '../../context';
 import { Logo } from './Logo';
 import { Navbar } from './Navbar';
 import { NavTabLink } from './NavTabLink';
 import { UserProfile } from './UserProfile';
+import { useWeb3React } from '@web3-react/core';
 
 export default function Header() {
+  const [walletDialogIsOpen, setWalletDialogIsOpen] = useWalletDialog();
+  const { active, account, connector, activate, error } = useWeb3React();
+
   return (
     <Navbar>
       <Navbar.Brand>
         <Center marginEnd={6}>
-          <Logo h="6" iconColor="blue.600" />
+          <Logo />
         </Center>
       </Navbar.Brand>
       <Navbar.Links>
-        <NavTabLink>Features</NavTabLink>
-        <NavTabLink>Documentation</NavTabLink>
-        <NavTabLink>Pricing</NavTabLink>
-        <NavTabLink>Team</NavTabLink>
+        <NavTabLink>Decentraland</NavTabLink>
+        <NavTabLink>Cryptovoxels</NavTabLink>
+        <NavTabLink>The Sandbox</NavTabLink>
+        <NavTabLink>Somnium Space</NavTabLink>
       </Navbar.Links>
       <Navbar.UserProfile>
-        <UserProfile
-          name="Christian Schröter"
-          avatarUrl="https://ca.slack-edge.com/T024F7F15-UJVQ359SP-81fc55875723-512"
-          email="mail@chidori-ui.com"
-        />
+        {!account ? (
+          <UserProfile
+            address="0x91c987bf62D25945dB517BDAa840A6c661374402"
+            walletType="Connected with metamask"
+          />
+        ) : (
+          <Button onClick={() => setWalletDialogIsOpen(true)}>
+            Connect wallet
+          </Button>
+        )}
       </Navbar.UserProfile>
     </Navbar>
   );
