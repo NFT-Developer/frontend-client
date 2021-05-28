@@ -1,39 +1,47 @@
-import { BellIcon } from '@chakra-ui/icons'
-import { Flex, IconButton, HStack, Avatar, Text } from '@chakra-ui/react'
-import * as React from 'react'
+import {
+  Flex,
+  IconButton,
+  HStack,
+  Avatar,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
+import { FiSun, FiMoon } from 'react-icons/fi';
+import { shortenAddress } from '../../utils';
 
-interface Props {
-  name: string
-  email: string
-  avatarUrl: string
-}
+export const UserProfile = ({
+  address,
+  walletType,
+}: {
+  address: string;
+  walletType: string;
+}) => {
+  const { colorMode, toggleColorMode } = useColorMode();
 
-export const UserProfile: React.FC<Props> = (props) => {
-  const { name, email, avatarUrl } = props
   return (
     <>
       <Flex order={{ base: 2, md: 1 }}>
         <IconButton
           isRound
           size="sm"
-          fontSize="xl"
-          aria-label="Show notification"
+          aria-label="color mode"
           variant="ghost"
           color="current"
-          icon={<BellIcon />}
+          icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
+          onClick={toggleColorMode}
         />
       </Flex>
       <HStack spacing={3} order={{ base: 1, md: 2 }} flex="1">
-        <Avatar name={name} src={avatarUrl} size="sm" />
+        <Avatar size="sm" />
         <Flex direction="column" display={{ base: 'flex', md: 'none' }}>
           <Text fontWeight="bold" lineHeight="shorter">
-            {name}
+            {shortenAddress(address)}
           </Text>
           <Text fontSize="sm" lineHeight="shorter" opacity={0.7}>
-            {email}
+            {walletType}
           </Text>
         </Flex>
       </HStack>
     </>
-  )
-}
+  );
+};

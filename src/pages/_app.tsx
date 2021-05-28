@@ -25,8 +25,8 @@ export default function App({ Component, pageProps }) {
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔭</text></svg>"
         />
       </Head>
-      <LayoutProvider>
-        <Web3ReactProvider getLibrary={getLibrary}>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <LayoutProvider>
           <ApolloProvider client={client}>
             <ChakraProvider theme={theme}>
               <Layout>
@@ -34,8 +34,8 @@ export default function App({ Component, pageProps }) {
               </Layout>
             </ChakraProvider>
           </ApolloProvider>
-        </Web3ReactProvider>
-      </LayoutProvider>
+        </LayoutProvider>
+      </Web3ReactProvider>
     </>
   );
 }
