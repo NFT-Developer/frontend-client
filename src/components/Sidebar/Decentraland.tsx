@@ -16,8 +16,6 @@ import {
   TabPanel,
   Text,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { parseISO, format } from 'date-fns';
 
 export default function Sidebar({
   assets,
