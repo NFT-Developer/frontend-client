@@ -93,12 +93,16 @@ export default function Sidebar({ assets }: { assets: any }) {
                   <Text>400</Text>
                 </Flex>
                 <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">Total parcel</Text>
-                  <Text>400</Text>
+                  <Text fontWeight="700">Active wallets</Text>
+                  <Text>250</Text>
                 </Flex>
                 <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">Total parcel</Text>
-                  <Text>400</Text>
+                  <Text fontWeight="700">Primary sales</Text>
+                  <Text>100</Text>
+                </Flex>
+                <Flex justify="space-between" mb="0.5rem" py="1.25rem">
+                  <Text fontWeight="700">Secondary sales</Text>
+                  <Text>200</Text>
                 </Flex>
               </Flex>
             </TabPanel>
