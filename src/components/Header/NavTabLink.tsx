@@ -1,32 +1,43 @@
 import {
   Link,
-  LinkProps,
+  Icon,
   Tab,
+  Img,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
-import * as React from 'react';
-
-export const NavTabLink: React.FC<LinkProps> = (props) => {
+import SomniumSpaceIcon from '../../assets/SomniumSpace';
+export const NavTabLink = ({
+  onClick,
+  text,
+  logo,
+}: {
+  onClick: any;
+  text: string;
+  logo: any;
+}) => {
   return (
     <Tab
       _selected={{ color: mode('blue.600', 'blue.200') }}
       _focus={{ shadow: 'none' }}
       justifyContent="flex-start"
       px={{ base: 4, md: 6 }}
+      onClick={onClick}
     >
+      <Icon as={logo} />
       <Link
         as="div"
+        ml="0.5rem"
         display="block"
         fontWeight="medium"
-        lineHeight="1.25rem"
         color="inherit"
         whiteSpace="nowrap"
         _hover={{ color: mode('blue.600', 'blue.200') }}
         _activeLink={{
           color: mode('blue.600', 'blue.200'),
         }}
-        {...props}
-      />
+      >
+        {text}
+      </Link>
     </Tab>
   );
 };
