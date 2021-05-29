@@ -1,9 +1,10 @@
-import dynamic from 'next/dynamic';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar/Decentraland';
 import { useEffect, useState } from 'react';
 import { Flex, Grid, Box, Image, List, ListItem } from '@chakra-ui/react';
 import { gql } from '@apollo/client';
 import client from '../lib/apollo';
+import Map from '../components/Map/Decentraland';
+
 const endpointName = 'assets';
 const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=decentraland`;
 const options = { method: 'GET' };
@@ -24,8 +25,6 @@ const parseOpenSeaAssetResponse = (res) =>
       )?.value,
     },
   }));
-
-const Map = dynamic(() => import('../components/Map/Decentraland'));
 
 export default function Home() {
   const [assets, setAssets] = useState([]);

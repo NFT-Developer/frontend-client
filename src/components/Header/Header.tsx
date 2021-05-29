@@ -20,18 +20,25 @@ export default function Header() {
         </Center>
       </Navbar.Brand>
       <Navbar.Links>
-        <NavTabLink onClick={() => replace('/decentraland')}>
-          Decentraland
-        </NavTabLink>
-        <NavTabLink onClick={() => replace('/cryptovoxels')}>
-          Cryptovoxels
-        </NavTabLink>
-        <NavTabLink onClick={() => replace('/the-sandbox')}>
-          The Sandbox
-        </NavTabLink>
-        <NavTabLink onClick={() => replace('/somnium-space')}>
-          Somnium Space
-        </NavTabLink>
+        <NavTabLink
+          onClick={() => replace('/decentraland')}
+          text="Decentraland"
+        />
+
+        <NavTabLink
+          onClick={() => replace('/cryptovoxels')}
+          text="Cryptovoxels"
+        />
+
+        <NavTabLink
+          onClick={() => replace('/the-sandbox')}
+          text="The Sandbox"
+        />
+
+        <NavTabLink
+          onClick={() => replace('/somnium-space')}
+          text="Somnium Space"
+        />
       </Navbar.Links>
       <Navbar.UserProfile>
         {!account ? (
