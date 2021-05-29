@@ -19,7 +19,7 @@ import {
 const endpointName = 'assets';
 const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=somnium-space`;
 const options = { method: 'GET' };
-// const Map = dynamic(() => import('../components/Map'));
+const Map = dynamic(() => import('../components/Map/SomniumSpace'));
 
 export default function SomniumSpace() {
   const [assets, setAssets] = useState<any[]>([]);
@@ -103,10 +103,10 @@ export default function SomniumSpace() {
   return (
     <Flex position="relative" overflow="hidden" w="100%" minH="100vh">
       <Box w="60%" h="1000px">
-        {/* <Map /> */}
+        <Map />
       </Box>
       <Box w="40%" h="1000px" mr={5}>
-        <Sidebar assets={assets} />
+        {/* <Sidebar assets={assets} /> */}
       </Box>
     </Flex>
   );
