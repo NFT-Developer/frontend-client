@@ -1,11 +1,15 @@
 import { Atlas, Layer, Coord } from 'decentraland-ui';
 import { Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import results from './heatmap-data.json';
 
 export default function Map() {
   const [tiles, setTiles] = useState();
-  // if (window) Atlas.fetchTiles().then((_tiles) => (tiles = _tiles));
+  console.log('tiles:', tiles);
+  const [events, setEvents] = useState([]);
+  const [heatMap, setHeatMap] = useState([]);
 
+  // tile layout with districts and roads
   useEffect(() => {
     (async () => {
       if (window) {
@@ -29,6 +33,53 @@ export default function Map() {
     return null;
   };
 
+  // heat layer
+  useEffect(() => {
+    try {
+      const parcel = ['-117', '128'];
+      const historicalData = results[0].series.find(
+        (v) => v.tags.x == parcel[0] && v.tags.y == parcel[1],
+      );
+      if (historicalData) {
+        console.log('historicalData:', historicalData.values);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  const heatLayer: Layer = (x, y) => {
+    const key = x + ',' + y;
+    //@ts-ignore
+    if (tiles && tiles[key] && 'heat' in tiles[key]) {
+      return { color: '#f00' };
+    }
+    return null;
+  };
+
+  //events layer
+  useEffect(() => {
+    (async () => {
+      var events = [];
+      var response = await fetch('https://events.decentraland.org/api/events/');
+      var data = await response.json();
+      events = data.data;
+      setEvents(events);
+    })();
+  }, []);
+
+  const eventsLayer = (x, y) => {
+    // const key = x + ',' + y;
+    // if (events && events[key]) {
+    //   if (enabled && enabled[key] && 'enabled' in enabled[key]) {
+    //     return combinedColor;
+    //   } else {
+    //     return singleEventColor;
+    //   }
+    // }
+    return null;
+  };
+
   let selected: Coord[] = [];
 
   function isSelected(x: number, y: number) {
@@ -45,12 +96,6 @@ export default function Map() {
   };
 
   let hover;
-
-  // const isValid = () => {
-  //   if (!hover) return false;
-  //   // only valid if it fits in central plaza
-  //   return hover.x >= -5 && hover.x <= 6 && hover.y >= -5 && hover.y <= 5;
-  // };
 
   const isHighlighted = (x: number, y: number) => {
     if (!hover) return false;
@@ -71,7 +116,6 @@ export default function Map() {
   const hoverStrokeLayer: Layer = (x, y) => {
     if (isHighlighted(x, y)) {
       return {
-        // color: isValid() ? '#44ff00' : '#ff0044',
         color: '#44ff00',
         scale: 1.5,
       };
@@ -82,7 +126,6 @@ export default function Map() {
   const hoverFillLayer: Layer = (x, y) => {
     if (isHighlighted(x, y)) {
       return {
-        // color: isValid() ? '#99ff90' : '#ff9990',
         color: '#99ff90',
         scale: 1.2,
       };
@@ -93,7 +136,13 @@ export default function Map() {
     <Box h="80vh">
       <Atlas
         tiles={tiles}
-        layers={[forSaleLayer, hoverStrokeLayer, hoverFillLayer]}
+        layers={[
+          eventsLayer,
+          forSaleLayer,
+          hoverStrokeLayer,
+          hoverFillLayer,
+          heatLayer,
+        ]}
         onHover={handleHover}
         onClick={handleClick}
       />

@@ -15,8 +15,8 @@ import { FiSearch } from 'react-icons/fi';
 
 export default function Navbar() {
   return (
-    <Box p="4" bgColor={mode('white', 'black')}>
-      <Box maxW="7xl" mx="auto">
+    <Box p="4" bgColor="gray.900">
+      <Box mx="auto">
         <Stack
           spacing="5"
           direction={{ base: 'column', md: 'row' }}
