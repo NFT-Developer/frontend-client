@@ -12,8 +12,10 @@ export default function Map() {
         const resp = await window.fetch(
           'https://api.decentraland.org/v1/tiles',
         );
-        const json = await resp.json();
-        setTiles(json.data);
+        const data = await resp.json();
+        console.log('data:', data);
+
+        setTiles(data.data);
       }
     })();
   }, []);
