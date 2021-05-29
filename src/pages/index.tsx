@@ -5,6 +5,8 @@ import { Flex, Grid, Box, Image, List, ListItem } from '@chakra-ui/react';
 const endpointName = 'assets';
 const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=decentraland`;
 const options = { method: 'GET' };
+import { gql } from '@apollo/client';
+import client from '../lib/apollo';
 
 const parseOpenSeaAssetResponse = (res) =>
   res.map((item) => ({
@@ -25,7 +27,7 @@ const parseOpenSeaAssetResponse = (res) =>
 
 const Map = dynamic(() => import('../components/Map'));
 
-export default function Home() {
+export default function Home({ counts }) {
   const [assets, setAssets] = useState([]);
 
   useEffect(() => {
@@ -49,4 +51,25 @@ export default function Home() {
       </Box>
     </Flex>
   );
+}
+
+export async function getServerSideProps() {
+  const { data } = await client.query({
+    query: gql`
+      {
+        counts {
+          id
+          orderTotal
+          orderParcel
+          orderEstate
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      counts: data.counts,
+    },
+  };
 }
