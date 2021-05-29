@@ -5,10 +5,12 @@ import { Navbar } from './Navbar';
 import { NavTabLink } from './NavTabLink';
 import { UserProfile } from './UserProfile';
 import { useWeb3React } from '@web3-react/core';
+import { useRouter } from 'next/router';
 
 export default function Header() {
   const [walletDialogIsOpen, setWalletDialogIsOpen] = useWalletDialog();
   const { active, account, connector, activate, error } = useWeb3React();
+  const { replace } = useRouter();
 
   return (
     <Navbar>
@@ -18,10 +20,18 @@ export default function Header() {
         </Center>
       </Navbar.Brand>
       <Navbar.Links>
-        <NavTabLink>Decentraland</NavTabLink>
-        <NavTabLink>Cryptovoxels</NavTabLink>
-        <NavTabLink>The Sandbox</NavTabLink>
-        <NavTabLink>Somnium Space</NavTabLink>
+        <NavTabLink onClick={() => replace('/decentraland')}>
+          Decentraland
+        </NavTabLink>
+        <NavTabLink onClick={() => replace('/cryptovoxels')}>
+          Cryptovoxels
+        </NavTabLink>
+        <NavTabLink onClick={() => replace('/the-sandbox')}>
+          The Sandbox
+        </NavTabLink>
+        <NavTabLink onClick={() => replace('/somnium-space')}>
+          Somnium Space
+        </NavTabLink>
       </Navbar.Links>
       <Navbar.UserProfile>
         {!account ? (
