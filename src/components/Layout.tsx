@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <Box maxH="100vh" overflowY="hidden">
+    <Box maxH="100vh">
       <Header />
       <Navbar />
       <Box>{children}</Box>
