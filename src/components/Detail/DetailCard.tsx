@@ -5,14 +5,24 @@ import {
   Heading
 } from '@chakra-ui/react';
 
-export default function DetailCard() {
+export default function DetailCard({
+  metaverse,
+  land_type,
+  image_src,
+  parcel_number,
+  owner,
+  views,
+  current_bids,
+  price_eth,
+  price_usd
+}) {
   return (
     <Box  overflowX="hidden">
       <Box d="flex" flexDir="row" justifyContent="space-between">
-        <Text fontWeight="bold">Decentraland</Text>
-        <Text fontWeight="bold">Parcel</Text>
+        <Text fontWeight="bold">{metaverse}</Text>
+        <Text fontWeight="bold">{land_type}</Text>
       </Box>
-        <Image src="https://lh3.googleusercontent.com/bHA7padmm0G17HKIOftzZqaajo0Pmv1xc2bQ2sDI5MpiYePAY5myang7QTSrQn4scLdnV7GXzCPFfntKQci7FzMSe27IpQz5DUiu4w" width="100%" height="200px"/>
+        <Image src={image_src} width="100%" height="200px"/>
       <Box d="flex" flexDir="row" justifyContent="space-between">
         <Box>
           <Box
@@ -20,11 +30,11 @@ export default function DetailCard() {
             lineHeight="tight"
             isTruncated
           >
-            <Heading size="lg">Parcel 54 - 26</Heading>
+            <Heading size="lg">Parcel {parcel_number}</Heading>
           </Box>
 
           <Box>
-          <Heading size="md">owned by me</Heading>
+          <Heading size="md">owned by {owner}</Heading>
           </Box>
         </Box>
         <Box d="flex" flexDir="column">
@@ -35,10 +45,10 @@ export default function DetailCard() {
             fontSize="xs"
             textTransform="uppercase"
           >
-            840 views, 7 current
+            {views} views, {current_bids} current
           </Box>
           <Box as="span" color="gray.600" fontSize="sm">
-            1.58877 ($3765.50)
+            {price_eth} (${price_usd})
           </Box>
         </Box>
       </Box>

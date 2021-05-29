@@ -7,12 +7,12 @@ import {
   AlertDescription
 } from '@chakra-ui/react';
 
-export default function AlertBox() {
+export default function AlertBox({sale_end}) {
   return (
     <Box color="white" border="1px solid" borderColor="red">
       <Alert status="error" bgColor="red">
         <AlertIcon color="white"/>
-        <AlertDescription>Sale ends tomorrow in 27:34:13.</AlertDescription>
+        <AlertDescription>Sale ends at {sale_end}.</AlertDescription>
       </Alert>
       <Container centerContent p="2">
         <Button colorScheme="blue">Buy Now</Button>

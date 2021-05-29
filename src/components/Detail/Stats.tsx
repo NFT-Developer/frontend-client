@@ -7,30 +7,37 @@ import {
   StatGroup
 } from '@chakra-ui/react';
 
-export default function Stats() {
+export default function Stats({
+  plaza_score,
+  plaza_distance,
+  road_score,
+  road_distance,
+  district_score,
+  district_distance
+}) {
   return (
     <StatGroup>
     <Stat>
       <StatLabel>Plaza</StatLabel>
-      <StatNumber>46%</StatNumber>
+      <StatNumber>{plaza_score}%</StatNumber>
       <StatHelpText>
         <StatArrow type="decrease" />
-        18 blocks
+        {plaza_distance} blocks
       </StatHelpText>
     </Stat>
     <Stat>
       <StatLabel>Road</StatLabel>
-      <StatNumber>82%</StatNumber>
+      <StatNumber>{road_score}%</StatNumber>
       <StatHelpText>
         <StatArrow type="increase" />
-        3 blocks
+        {road_distance} blocks
       </StatHelpText>
     </Stat>
     <Stat>
       <StatLabel>District</StatLabel>
-      <StatNumber>51%</StatNumber>
+      <StatNumber>{district_score}%</StatNumber>
       <StatHelpText>
-        6 blocks
+        {district_distance} blocks
       </StatHelpText>
     </Stat>
   </StatGroup>)

@@ -9,7 +9,17 @@ import {
 import Stats from './Stats';
 import OfferTable from './OfferTable';
 
-export default function MetricsAccordion() {
+export default function MetricsAccordion({
+  closest_district,
+  plaza_score,
+  plaza_distance,
+  road_score,
+  road_distance,
+  district_score,
+  district_distance,
+  price_history,
+  offers
+}) {
   return (
     <Accordion defaultIndex={[0]} allowMultiple>
       <AccordionItem>
@@ -23,10 +33,17 @@ export default function MetricsAccordion() {
         </h5>
         <AccordionPanel pb={4}>
           <Box>
-            <Stats />
+            <Stats
+              plaza_score={plaza_score}
+              plaza_distance={plaza_distance}
+              road_score={road_score}
+              road_distance={road_distance}
+              district_score={district_score}
+              district_distance={district_distance}
+            />
           </Box>
           <Box>
-            Closest District: Vegas City
+            Closest District: {closest_district}
           </Box>
         </AccordionPanel>
       </AccordionItem>
@@ -40,10 +57,7 @@ export default function MetricsAccordion() {
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
+          {price_history}
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -56,7 +70,7 @@ export default function MetricsAccordion() {
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          <OfferTable/>
+          <OfferTable offers={offers} />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>

@@ -11,7 +11,14 @@ import {
   Td
 } from '@chakra-ui/react';
 
-export default function DetailAccordion() {
+export default function DetailAccordion({
+  contract_address,
+  token_id,
+  estate_id,
+  blockchain,
+  description,
+  parcel_number
+}) {
   return (
     <Accordion defaultIndex={[0]} allowMultiple>
       <AccordionItem>
@@ -28,19 +35,19 @@ export default function DetailAccordion() {
             <Tbody>
               <Tr>
                 <Td>Contract Address</Td>
-                <Td>0xf87eiksfjsss</Td>
+                <Td>{contract_address}</Td>
               </Tr>
               <Tr>
                 <Td>Token ID</Td>
-                <Td>837646463632</Td>
+                <Td>{token_id}</Td>
               </Tr>
               <Tr>
                 <Td>Estate ID</Td>
-                <Td>516727844</Td>
+                <Td>{estate_id}</Td>
               </Tr>
               <Tr>
                 <Td>Blockchain</Td>
-                <Td>Ethereum</Td>
+                <Td>{blockchain}</Td>
               </Tr>
             </Tbody>
         </Table>
@@ -56,8 +63,7 @@ export default function DetailAccordion() {
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt
+          {description}
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -70,7 +76,7 @@ export default function DetailAccordion() {
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          54 -26
+          {parcel_number}
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
