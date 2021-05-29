@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import Sidebar from '../components/Sidebar';
+import Universedata from '../components/Universedata';
 import { useEffect, useState } from 'react';
 import { Flex, Grid, Box, Image, List, ListItem } from '@chakra-ui/react';
 const endpointName = 'assets';
@@ -29,7 +30,6 @@ const Map = dynamic(() => import('../components/Map'));
 
 export default function Home({ counts }) {
   const [assets, setAssets] = useState([]);
-
   useEffect(() => {
     fetch(url, options)
       .then((res) => res.json())
@@ -42,14 +42,17 @@ export default function Home({ counts }) {
   }, []);
 
   return (
-    <Flex position="relative" overflow="hidden" w="100%" minH="100vh">
-      <Box w="60%" h="1000px">
-        <Map />
-      </Box>
-      <Box w="40%" h="1000px" mr={5}>
-        <Sidebar assets={assets} />
-      </Box>
-    </Flex>
+    <Box>
+      <Universedata counts={counts} />
+      <Flex position="relative" overflow="hidden" w="100%" minH="100vh">
+        <Box w="60%" h="1000px">
+          <Map />
+        </Box>
+        <Box w="40%" h="1000px" mr={5}>
+          <Sidebar assets={assets} />
+        </Box>
+      </Flex>
+    </Box>
   );
 }
 
@@ -58,10 +61,8 @@ export async function getServerSideProps() {
     query: gql`
       {
         counts {
-          id
-          orderTotal
-          orderParcel
-          orderEstate
+          parcelTotal
+          estateTotal
         }
       }
     `,
