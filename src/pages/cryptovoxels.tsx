@@ -6,8 +6,7 @@ import styles from '../styles/Home.module.css';
 
 const Map = dynamic(() => import('../components/Map/Cryptovoxels/Map'));
 
-const endpointName = 'assets';
-const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=cryptovoxels`;
+const url = `https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20&collection=cryptovoxels`;
 const options = { method: 'GET' };
 
 const parseOpenSeaAssetResponse = (res) =>

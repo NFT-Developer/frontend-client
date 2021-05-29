@@ -16,15 +16,15 @@ export default function DecentralandLogo() {
           y2="85.355%"
           id="a"
         >
-          <stop stop-color="#FF2D55" offset="0%" />
-          <stop stop-color="#FFBC5B" offset="100%" />
+          <stop stopColor="#FF2D55" offset="0%" />
+          <stop stopColor="#FFBC5B" offset="100%" />
         </linearGradient>
         <linearGradient x1="49.966%" y1="0%" x2="49.966%" y2="100%" id="b">
-          <stop stop-color="#A524B3" offset="0%" />
-          <stop stop-color="#FF2D55" offset="100%" />
+          <stop stopColor="#A524B3" offset="0%" />
+          <stop stopColor="#FF2D55" offset="100%" />
         </linearGradient>
       </defs>
-      <g fill="none" fill-rule="evenodd">
+      <g fill="none" fillRule="evenodd">
         <circle fill="url(#a)" cx="200" cy="200" r="200" />
         <path
           fill="url(#b)"

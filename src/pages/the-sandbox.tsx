@@ -5,8 +5,7 @@ import { Flex, Grid, Box, Image, List, ListItem } from '@chakra-ui/react';
 
 const Map = dynamic(() => import('../components/Map/TheSandbox'));
 
-const endpointName = 'assets';
-const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=sandbox`;
+const url = `https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20&collection=sandbox`;
 const options = { method: 'GET' };
 
 const parseOpenSeaAssetResponse = (res) =>
@@ -28,7 +27,6 @@ const parseOpenSeaAssetResponse = (res) =>
 
 export default function TheSandbox() {
   const [assets, setAssets] = useState([]);
-  console.log('assets:', assets);
 
   useEffect(() => {
     fetch(url, options)
