@@ -15,7 +15,7 @@ import { FiSearch } from 'react-icons/fi';
 
 export default function Navbar() {
   return (
-    <Box p="8" bgColor={mode('white', 'black')}>
+    <Box p="4" bgColor={mode('white', 'black')}>
       <Box maxW="7xl" mx="auto">
         <Stack
           spacing="5"

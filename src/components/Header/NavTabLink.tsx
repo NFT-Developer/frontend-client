@@ -15,6 +15,8 @@ export const NavTabLink: React.FC<LinkProps> = (props) => {
       px={{ base: 4, md: 6 }}
     >
       <Link
+        as="div"
+        display="block"
         fontWeight="medium"
         lineHeight="1.25rem"
         color="inherit"

@@ -7,10 +7,10 @@ import Navbar from './Navbar';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <Box>
+    <Box maxH="100vh" overflowY="hidden">
       <Header />
       <Navbar />
-      <Box mb="2rem">{children}</Box>
+      <Box>{children}</Box>
       <Dialogs />
     </Box>
   );
