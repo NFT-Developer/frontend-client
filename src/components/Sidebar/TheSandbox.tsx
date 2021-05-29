@@ -72,8 +72,14 @@ export default function Sidebar({ assets }: { assets: any }) {
       w="100%"
     >
       <Box p="20px">
-        <Tabs isFitted variant="soft-rounded" colorScheme="blue">
-          <TabList mb="1rem">
+        <Tabs isFitted variant="solid-rounded" colorScheme="blue">
+          <TabList
+            mb="1rem"
+            bgColor="gray.600"
+            borderRadius="md"
+            p="0.75rem"
+            boxShadow="-1.5px 1.5px 1.5px black"
+          >
             <Tab>Listings</Tab>
             <Tab>Details</Tab>
           </TabList>
@@ -98,19 +104,19 @@ export default function Sidebar({ assets }: { assets: any }) {
               <Flex w="100%" pt="3rem" direction="column">
                 <Text fontSize="1.25rem">About The Sandbox</Text>
                 <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">Total parcel</Text>
+                  <Text fontWeight="700">🏠 Total parcel</Text>
                   <Text>400</Text>
                 </Flex>
                 <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">Active wallets</Text>
+                  <Text fontWeight="700">💰 Active wallets</Text>
                   <Text>250</Text>
                 </Flex>
                 <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">Primary sales</Text>
+                  <Text fontWeight="700">💵 Primary sales</Text>
                   <Text>100</Text>
                 </Flex>
                 <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">Secondary sales</Text>
+                  <Text fontWeight="700">💎 Secondary sales</Text>
                   <Text>200</Text>
                 </Flex>
               </Flex>
