@@ -25,6 +25,7 @@ const asset = {
   blockchain: 'ethereum',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
   closest_district: 'Vegas City',
+  insight: 'Hot Find! This parcel is closer to a Road than 60% of other parcels',
   plaza_score: 46,
   plaza_distance: 18,
   road_score: 82,
@@ -56,6 +57,7 @@ export default function Detail() {
     blockchain,
     description,
     closest_district,
+    insight,
     plaza_score,
     plaza_distance,
     road_score,
@@ -97,6 +99,7 @@ export default function Detail() {
     <Grid templateColumns="repeat(1, 1fr)" gap={6} mt={15}>
       <MetricsAccordion
         closest_district={closest_district}
+        insight={insight}
         plaza_score={plaza_score}
         plaza_distance={plaza_distance}
         road_score={road_score}

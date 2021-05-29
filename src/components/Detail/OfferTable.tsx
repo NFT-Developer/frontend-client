@@ -24,7 +24,7 @@ export default function OfferTable({
       </Thead>
       <Tbody>
         {offers.map(offer => (
-          <Tr>
+          <Tr key={offer.name}>
             <Td>{offer.name}</Td>
             <Td>{offer.price_eth} (${offer.price_usd})</Td>
             <Td>in {offer.expiration}</Td>
