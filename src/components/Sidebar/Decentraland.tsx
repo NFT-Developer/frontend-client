@@ -181,7 +181,7 @@ export default function Sidebar({
             </TabPanel>
             <TabPanel>
               <Flex w="100%" pt="3rem" direction="column">
-                <Text fontSize="1.25rem">About The Sandbox</Text>
+                <Text fontSize="1.25rem">About Decentraland</Text>
                 <Flex justify="space-between" mb="0.5rem" py="1.25rem">
                   <Text fontWeight="700">🏠 Total parcel</Text>
                   <Text>400</Text>

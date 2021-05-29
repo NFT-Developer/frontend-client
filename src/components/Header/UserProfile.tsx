@@ -6,7 +6,7 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { FiBell } from 'react-icons/fi';
 import { shortenAddress } from '../../utils';
 
 export const UserProfile = ({
@@ -24,11 +24,10 @@ export const UserProfile = ({
         <IconButton
           isRound
           size="sm"
-          aria-label="color mode"
-          variant="ghost"
+          aria-label="notifications"
+          // variant="ghost"
           color="current"
-          icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
-          onClick={toggleColorMode}
+          icon={<FiBell />}
         />
       </Flex>
       <HStack spacing={3} order={{ base: 1, md: 2 }} flex="1">
