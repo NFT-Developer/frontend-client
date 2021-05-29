@@ -73,12 +73,21 @@ export default function Sidebar({ assets }: { assets: any }) {
     >
       <Box p="20px">
         <Tabs isFitted variant="soft-rounded" colorScheme="blue">
-          <TabList>
+          <TabList mb="1rem">
             <Tab>Listings</Tab>
             <Tab>Details</Tab>
           </TabList>
           <TabPanels>
-            <TabPanel>
+            <TabPanel
+              overflowY="auto"
+              height="100vh"
+              sx={{
+                '::-webkit-scrollbar': {
+                  display: 'none',
+                },
+                scrollbarWidth: 'none',
+              }}
+            >
               <Grid templateColumns="repeat(2, 1fr)" gap={6}>
                 {assets?.map((asset, i) => (
                   <Card asset={asset} key={`${asset.name}-${i}`} />

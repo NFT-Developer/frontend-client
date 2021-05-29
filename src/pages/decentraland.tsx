@@ -28,6 +28,18 @@ const parseOpenSeaAssetResponse = (res) =>
 
 export default function Home() {
   const [assets, setAssets] = useState([]);
+  const [events, setEvents] = useState([]);
+
+  //events layer
+  useEffect(() => {
+    (async () => {
+      var events = [];
+      var response = await fetch('https://events.decentraland.org/api/events/');
+      var data = await response.json();
+      events = data.data;
+      setEvents(events);
+    })();
+  }, []);
 
   useEffect(() => {
     fetch(url, options)
@@ -46,7 +58,7 @@ export default function Home() {
         <Map />
       </Box>
       <Box w="40%" h="1000px" mr={5}>
-        <Sidebar assets={assets} />
+        <Sidebar assets={assets} events={events} />
       </Box>
     </Flex>
   );

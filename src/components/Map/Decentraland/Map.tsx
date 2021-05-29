@@ -17,6 +17,7 @@ export default function Map() {
           'https://api.decentraland.org/v1/tiles',
         );
         const data = await resp.json();
+        console.log('data:', data);
 
         setTiles(data.data);
       }
