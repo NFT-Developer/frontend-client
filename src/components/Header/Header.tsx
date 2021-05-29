@@ -6,6 +6,10 @@ import { NavTabLink } from './NavTabLink';
 import { UserProfile } from './UserProfile';
 import { useWeb3React } from '@web3-react/core';
 import { useRouter } from 'next/router';
+import CryptovoxelsLogo from '../../assets/Cryptovoxels';
+import DecentralandLogo from '../../assets/Decentraland';
+import SomniumSpaceLogo from '../../assets/SomniumSpace';
+import TheSandboxLogo from '../../assets/TheSandbox';
 
 export default function Header() {
   const [walletDialogIsOpen, setWalletDialogIsOpen] = useWalletDialog();
@@ -23,21 +27,25 @@ export default function Header() {
         <NavTabLink
           onClick={() => replace('/decentraland')}
           text="Decentraland"
+          logo={DecentralandLogo}
         />
 
         <NavTabLink
           onClick={() => replace('/cryptovoxels')}
           text="Cryptovoxels"
+          logo={CryptovoxelsLogo}
         />
 
         <NavTabLink
           onClick={() => replace('/the-sandbox')}
           text="The Sandbox"
+          logo={TheSandboxLogo}
         />
 
         <NavTabLink
           onClick={() => replace('/somnium-space')}
-          text="Somnium Space"
+          text="Somnium Space VR"
+          logo={SomniumSpaceLogo}
         />
       </Navbar.Links>
       <Navbar.UserProfile>

@@ -3,10 +3,10 @@ import Sidebar from '../components/Sidebar/SomniumSpace';
 import { useEffect, useState } from 'react';
 import { Flex, Grid, Box, Image, List, ListItem } from '@chakra-ui/react';
 
-const Map = dynamic(() => import('../components/Map/TheSandbox'));
+const Map = dynamic(() => import('../components/Map/SomniumSpace'));
 
-const endpointName = 'assets';
-const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=somnium-space`;
+const url =
+  'https://api.opensea.io/api/v1/assets?asset_contract_addresses=0x913ae503153d9a335398d0785ba60a2d63ddb4e2&order_by=sale_price&order_direction=desc&offset=0&limit=20&collection=somnium-space';
 const options = { method: 'GET' };
 
 const parseOpenSeaAssetResponse = (res) =>
