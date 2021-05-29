@@ -1,4 +1,9 @@
 import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
   Flex,
   Box,
   Img,
@@ -19,28 +24,59 @@ import {
   Center,
   Heading,
   SimpleGrid,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  StatGroup,
   Badge,
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Table,
+  TableCaption,
+  Thead,
+  Th,
+  Tfoot,
+  Tbody,
+  Tr,
+  Td,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  StatGroup
 } from '@chakra-ui/react';
 import Head from 'next/head';
 
-// Sample card from Airbnb
+function Stats() {
+ return (
+ <StatGroup>
+  <Stat>
+    <StatLabel>Plaza</StatLabel>
+    <StatNumber>46%</StatNumber>
+    <StatHelpText>
+      <StatArrow type="decrease" />
+      18 blocks
+    </StatHelpText>
+  </Stat>
 
-/*
-image_original_url: "https://api.decentraland.org/v2/estates/4194/map.png?size=24&width=1024&height=1024"
-image_preview_url: "https://lh3.googleusercontent.com/bHA7padmm0G17HKIOftzZqaajo0Pmv1xc2bQ2sDI5MpiYePAY5myang7QTSrQn4scLdnV7GXzCPFfntKQci7FzMSe27IpQz5DUiu4w=s250"
-image_thumbnail_url: "https://lh3.googleusercontent.com/bHA7padmm0G17HKIOftzZqaajo0Pmv1xc2bQ2sDI5MpiYePAY5myang7QTSrQn4scLdnV7GXzCPFfntKQci7FzMSe27IpQz5DUiu4w=s128"
-image_url: "https://lh3.googleusercontent.com/bHA7padmm0G17HKIOftzZqaajo0Pmv1xc2bQ2sDI5MpiYePAY5myang7QTSrQn4scLdnV7GXzCPFfntKQci7FzMSe27IpQz5DUiu4w"
-*/
+  <Stat>
+    <StatLabel>Road</StatLabel>
+    <StatNumber>82%</StatNumber>
+    <StatHelpText>
+      <StatArrow type="increase" />
+      3 blocks
+    </StatHelpText>
+  </Stat>
+  <Stat>
+    <StatLabel>District</StatLabel>
+    <StatNumber>51%</StatNumber>
+    <StatHelpText>
+      {/* <StatArrow /> */}
+      6 blocks
+    </StatHelpText>
+  </Stat>
+</StatGroup>)
+}
+
 function AirbnbExample() {
   const property = {
     imageUrl: "https://lh3.googleusercontent.com/bHA7padmm0G17HKIOftzZqaajo0Pmv1xc2bQ2sDI5MpiYePAY5myang7QTSrQn4scLdnV7GXzCPFfntKQci7FzMSe27IpQz5DUiu4w",
@@ -60,7 +96,6 @@ function AirbnbExample() {
         <Box>
           <Box
             fontWeight="semibold"
-            as="h4"
             lineHeight="tight"
             isTruncated
           >
@@ -104,6 +139,162 @@ function AlertBox() {
   );
 }
 
+function OfferTable() {
+ return (
+ <Table variant="simple">
+  <Thead>
+    <Tr>
+      <Th>From</Th>
+      <Th>Price</Th>
+      <Th>Expiration</Th>
+      <Th>Delta from Offer</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>ChaChaSlide</Td>
+      <Td>1.4230 ($3,501)</Td>
+      <Td>in 6 days</Td>
+      <Td isNumeric>-0.1622</Td>
+    </Tr>
+    <Tr>
+      <Td>Jamiroquai</Td>
+      <Td>1.2566 ($3,214)</Td>
+      <Td>in 21 days</Td>
+      <Td isNumeric>-0.3304</Td>
+    </Tr>
+  </Tbody>
+  <TableCaption textAlign="left">
+    <Button colorScheme="blue" variant="outline">Make Offer</Button>
+  </TableCaption>
+</Table>)
+}
+
+function OtherAccordion() {
+  return (
+    <Accordion defaultIndex={[0]} allowMultiple>
+  <AccordionItem>
+    <h5>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Proximity Score
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h5>
+    <AccordionPanel pb={4}>
+      <Box>
+        <Stats />
+      </Box>
+      <Box>
+        Closest District: Vegas City
+      </Box>
+
+    </AccordionPanel>
+  </AccordionItem>
+
+  <AccordionItem>
+    <h5>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Price History
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h5>
+    <AccordionPanel pb={4}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </AccordionPanel>
+  </AccordionItem>
+
+  <AccordionItem>
+    <h5>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Offers
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h5>
+    <AccordionPanel pb={4}>
+      <OfferTable/>
+    </AccordionPanel>
+  </AccordionItem>
+</Accordion>
+  )
+}
+
+function DetailAccordion() {
+  return (
+    <Accordion defaultIndex={[0]} allowMultiple>
+  <AccordionItem>
+    <h5>
+      <AccordionButton>
+        <Box flex="1" textAlign="left"  fontWeight="bold">
+          Details
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h5>
+    <AccordionPanel pb={4}>
+      <Table variant="unstyled" paddingLeft={0} marginLeft={0}>
+        <Tbody>
+          <Tr>
+            <Td>Contract Address</Td>
+            <Td>0xf87eiksfjsss</Td>
+          </Tr>
+          <Tr>
+            <Td>Token ID</Td>
+            <Td>837646463632</Td>
+          </Tr>
+          <Tr>
+            <Td>Estate ID</Td>
+            <Td>516727844</Td>
+          </Tr>
+          <Tr>
+            <Td>Blockchain</Td>
+            <Td>Ethereum</Td>
+          </Tr>
+        </Tbody>
+    </Table>
+    </AccordionPanel>
+  </AccordionItem>
+
+  <AccordionItem>
+    <h5>
+      <AccordionButton>
+        <Box flex="1" textAlign="left" fontWeight="bold">
+        Description
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h5>
+    <AccordionPanel pb={4}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt
+    </AccordionPanel>
+  </AccordionItem>
+
+  <AccordionItem>
+    <h5>
+      <AccordionButton>
+        <Box flex="1" textAlign="left" fontWeight="bold">
+        Parcels
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h5>
+    <AccordionPanel pb={4}>
+      54 -26
+    </AccordionPanel>
+  </AccordionItem>
+</Accordion>
+  )
+}
+
 export default function Detail({ assets }: { assets: any }) {
   return (
 <Container maxW="container.xl">
@@ -112,12 +303,12 @@ export default function Detail({ assets }: { assets: any }) {
     <AirbnbExample/>
     <AlertBox />
   </Box>
-  <Box w="100%" h="10" bg="blue.500" />
+  <Box>
+    <DetailAccordion/>
+  </Box>
   </Grid>
   <Grid templateColumns="repeat(1, 1fr)" gap={6} mt={15}>
-  <Box w="100%" h="10" bg="blue.500" />
-  <Box w="100%" h="10" bg="blue.500" />
-  <Box w="100%" h="10" bg="blue.500" />
+    <OtherAccordion/ >
 </Grid>
   </Container>
 
