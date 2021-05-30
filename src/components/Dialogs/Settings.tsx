@@ -64,9 +64,9 @@ const ButtonCheckbox = (props: ButtonCheckboxProps) => {
             <Text fontWeight="bold">{title}</Text>
             <Text fontSize="sm">{description}</Text>
           </Box>
-          <Box fontWeight="bold" color={mode('purple.600', 'purple.400')}>
+          {/* <Box fontWeight="bold" color={mode('purple.600', 'purple.400')}>
             {price}
-          </Box>
+          </Box> */}
         </HStack>
       </CheckboxBox>
     </label>
