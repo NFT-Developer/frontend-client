@@ -15,7 +15,7 @@ export default function AlertBox({ sale_end }) {
         <AlertDescription>Sale ends at {sale_end}.</AlertDescription>
       </Alert>
       <Container centerContent p="2">
-        <Button colorScheme="purple">Buy Now</Button>
+        <Button colorScheme="purple">Buy now</Button>
       </Container>
     </Box>
   );

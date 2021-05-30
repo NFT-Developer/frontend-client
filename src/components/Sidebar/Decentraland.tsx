@@ -56,7 +56,7 @@ export default function Sidebar({
         onClick={pushRoute}
       >
         <Image src={image} htmlWidth={'100%'} />
-        <Box p="6" bgColor="gray.700">
+        <Box p="6" bgColor="gray.700" cursor="pointer">
           <Box
             mt="1"
             fontWeight="semibold"

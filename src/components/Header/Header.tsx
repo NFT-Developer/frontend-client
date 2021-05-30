@@ -70,7 +70,7 @@ export default function Header() {
             <Button
               as="a"
               target="_blank"
-              href="https://github.com/memeta-codes/data"
+              href="https://market.oceanprotocol.com/asset/did:op:b7c489bfe9b542c26F8A3c8B220E7Bb56D2D86DA"
               colorScheme="purple"
               color="white"
               variant="outline"
@@ -93,7 +93,7 @@ export default function Header() {
             <Button
               as="a"
               target="_blank"
-              href="https://github.com/memeta-codes/data"
+              href="https://market.oceanprotocol.com/asset/did:op:b7c489bfe9b542c26F8A3c8B220E7Bb56D2D86DA"
               colorScheme="purple"
               color="white"
               variant="outline"

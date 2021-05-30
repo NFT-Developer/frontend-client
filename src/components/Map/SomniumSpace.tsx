@@ -7,7 +7,7 @@ export default function Map() {
         <Box
           className="work-video"
           as="iframe"
-          borderRadius="0px 0px 25px 25px"
+          // borderRadius="0px 0px 25px 25px"
           src={`https://map.somniumspace.com/`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></Box>
