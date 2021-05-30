@@ -9,26 +9,26 @@ import {
   Td,
 } from '@chakra-ui/react';
 
-export default function OfferTable({ offers }) {
+export default function OfferTable({ orderHistory }) {
   return (
     <Table variant="simple">
       <Thead>
         <Tr>
-          <Th>From</Th>
+          <Th>Created at</Th>
           <Th>Price</Th>
-          <Th>Expiration</Th>
-          <Th>Delta from Offer</Th>
+          <Th>Status</Th>
+          <Th>Updated at</Th>
+          <Th>Type</Th>
         </Tr>
       </Thead>
       <Tbody>
-        {offers.map((offer) => (
-          <Tr key={offer.name}>
-            <Td>{offer.name}</Td>
-            <Td>
-              {offer.price_eth} (${offer.price_usd})
-            </Td>
-            <Td>in {offer.expiration}</Td>
-            <Td>{offer.delta_from_offer}</Td>
+        {orderHistory.map((order) => (
+          <Tr key={order.__typename}>
+            <Td>{order.createdAt}</Td>
+            <Td>{order.price}</Td>
+            <Td>{order.status}</Td>
+            <Td>{order.updatedAt}</Td>
+            <Td>{order.__typename}</Td>
           </Tr>
         ))}
       </Tbody>

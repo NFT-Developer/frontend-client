@@ -17,6 +17,7 @@ import {
   estateBidsQuery
 } from '../../../lib/queries';
 import { useRouter } from 'next/router'
+import {useState} from 'react';
 
 const asset = {
   metaverse: 'Decentraland',
@@ -80,13 +81,16 @@ export default function Detail() {
   const router = useRouter()
   const { landType, landID} = router.query
 
+  const [orderHistory, setOrderHistory] = useState([]);
+
   useEffect(() => {
     async function callDetailEndpoints () {
       let history;
       if (landType === 'estate') {
         history = await client.query(estatePriceHistoryQuery(landID));
         const estateBids = await client.query(estateBidsQuery(landID));
-        console.log('zzzil', history, estateBids);
+        console.log('zzzil', history.data.estates[0].nft.orders);
+        setOrderHistory(history.data.estates[0].nft.orders);
 
       } else {
         history = await client.query(estatePriceHistoryQuery(landID));
@@ -136,7 +140,7 @@ export default function Detail() {
         district_score={district_score}
         district_distance={district_distance}
         price_history={price_history}
-        offers={offers}
+        orderHistory={orderHistory}
       />
     </Grid>
   </Container>

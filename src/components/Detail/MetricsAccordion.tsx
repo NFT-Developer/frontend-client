@@ -10,6 +10,8 @@ import {
 } from '@chakra-ui/react';
 import Stats from './Stats';
 import OfferTable from './OfferTable';
+import LineChart from '../LineChart';
+
 
 export default function MetricsAccordion({
   closest_district,
@@ -21,7 +23,7 @@ export default function MetricsAccordion({
   district_score,
   district_distance,
   price_history,
-  offers
+  orderHistory
 }) {
   return (
     <Accordion defaultIndex={[0]} allowMultiple>
@@ -61,7 +63,7 @@ export default function MetricsAccordion({
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          {price_history}
+          <OfferTable orderHistory={orderHistory}/>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -74,7 +76,7 @@ export default function MetricsAccordion({
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          <OfferTable offers={offers} />
+          <LineChart />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
