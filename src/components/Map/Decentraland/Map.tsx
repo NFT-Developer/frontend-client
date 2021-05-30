@@ -5,7 +5,6 @@ import results from './heatmap-data.json';
 
 export default function Map() {
   const [tiles, setTiles] = useState();
-  console.log('tiles:', tiles);
   const [events, setEvents] = useState([]);
   const [heatMap, setHeatMap] = useState([]);
 
@@ -44,7 +43,7 @@ export default function Map() {
         console.log('historicalData:', historicalData.values);
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }, []);
 

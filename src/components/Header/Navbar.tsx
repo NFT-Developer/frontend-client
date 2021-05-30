@@ -1,4 +1,4 @@
-import { HamburgerIcon } from '@chakra-ui/icons'
+import { HamburgerIcon } from '@chakra-ui/icons';
 import {
   Divider,
   Flex,
@@ -11,13 +11,15 @@ import {
   Tabs,
   useColorModeValue as mode,
   useDisclosure,
-} from '@chakra-ui/react'
-import React, { isValidElement, ReactElement } from 'react'
-import { MobileNavContent } from './MobileNavContent'
+} from '@chakra-ui/react';
+import React, { isValidElement, ReactElement } from 'react';
+import { MobileNavContent } from './MobileNavContent';
 
 export const Template: React.FC = (props) => {
-  const children = React.Children.toArray(props.children).filter<ReactElement>(isValidElement)
-  const mobileNav = useDisclosure()
+  const children = React.Children.toArray(props.children).filter<ReactElement>(
+    isValidElement,
+  );
+  const mobileNav = useDisclosure();
   return (
     <Flex
       py={4}
@@ -28,13 +30,15 @@ export const Template: React.FC = (props) => {
     >
       {children.find((child) => child.type === Brand)?.props.children}
       <HStack display={{ base: 'none', md: 'flex' }} marginStart={4}>
-        <Tabs colorScheme="blue" variant="unstyled" isFitted>
-          <TabList>{children.find((child) => child.type === Links)?.props.children}</TabList>
+        <Tabs colorScheme="purple" variant="unstyled" isFitted>
+          <TabList>
+            {children.find((child) => child.type === Links)?.props.children}
+          </TabList>
           <TabIndicator
             mt="13px"
             height={1}
             borderTopRadius="md"
-            bg={mode('blue.500', 'blue.200')}
+            bg={mode('purple.500', 'purple.200')}
           />
         </Tabs>
       </HStack>
@@ -55,27 +59,36 @@ export const Template: React.FC = (props) => {
 
       <MobileNavContent isOpen={mobileNav.isOpen} onClose={mobileNav.onClose}>
         <Stack spacing={5}>
-          <Flex>{children.find((child) => child.type === Brand)?.props.children}</Flex>
+          <Flex>
+            {children.find((child) => child.type === Brand)?.props.children}
+          </Flex>
           <Tabs orientation="vertical" variant="unstyled">
-            <TabList>{children.find((child) => child.type === Links)?.props.children}</TabList>
+            <TabList>
+              {children.find((child) => child.type === Links)?.props.children}
+            </TabList>
             <TabIndicator
               marginStart="-3"
               width={1}
               borderTopRadius={{ base: 'none', md: 'md' }}
-              bg={mode('blue.500', 'blue.200')}
+              bg={mode('purple.500', 'purple.200')}
             />
           </Tabs>
           <Divider />
 
-          <Flex>{children.find((child) => child.type === UserProfile)?.props.children}</Flex>
+          <Flex>
+            {
+              children.find((child) => child.type === UserProfile)?.props
+                .children
+            }
+          </Flex>
         </Stack>
       </MobileNavContent>
     </Flex>
-  )
-}
+  );
+};
 
-const Brand: React.FC = () => null
-const Links: React.FC = () => null
-const UserProfile: React.FC = () => null
+const Brand: React.FC = () => null;
+const Links: React.FC = () => null;
+const UserProfile: React.FC = () => null;
 
-export const Navbar = Object.assign(Template, { Brand, Links, UserProfile })
+export const Navbar = Object.assign(Template, { Brand, Links, UserProfile });

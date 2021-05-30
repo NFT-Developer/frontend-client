@@ -122,7 +122,7 @@ export default function Sidebar({
           >
             <Button
               as="a"
-              colorScheme="blue"
+              colorScheme="purple"
               color="white"
               href={url}
               size="sm"
@@ -132,7 +132,7 @@ export default function Sidebar({
             >
               Attend
             </Button>
-            <Badge ml="1rem" colorScheme="blue">{`${x}, ${y}`}</Badge>
+            <Badge ml="1rem" colorScheme="purple">{`${x}, ${y}`}</Badge>
           </Flex>
         </Flex>
       </Flex>
@@ -148,7 +148,7 @@ export default function Sidebar({
       w="100%"
     >
       <Box p="20px">
-        <Tabs isFitted variant="solid-rounded" colorScheme="blue">
+        <Tabs isFitted variant="solid-rounded" colorScheme="purple">
           <TabList
             mb="1rem"
             bgColor="gray.600"

@@ -39,7 +39,7 @@ export default function Navbar() {
               />
             </InputGroup>
             <Button
-              colorScheme="blue"
+              colorScheme="purple"
               flexShrink={0}
               fontWeight="bold"
               fontSize="sm"
@@ -47,6 +47,11 @@ export default function Navbar() {
               Search
             </Button>
           </HStack>
+          <Select placeholder="Price" isDisabled maxW="10rem">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </Select>
         </Stack>
       </Box>
     </Box>

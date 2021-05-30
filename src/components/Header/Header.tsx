@@ -31,7 +31,7 @@ export default function Header() {
         />
         <NavTabLink
           onClick={() => replace('/somnium-space')}
-          text="Somnium Space VR"
+          text="Somnium Space"
           logo={SomniumSpaceLogo}
         />
 
@@ -41,11 +41,11 @@ export default function Header() {
           logo={CryptovoxelsLogo}
         />
 
-        <NavTabLink
+        {/* <NavTabLink
           onClick={() => replace('/the-sandbox')}
           text="The Sandbox"
           logo={TheSandboxLogo}
-        />
+        /> */}
       </Navbar.Links>
       <Navbar.UserProfile>
         {!account ? (

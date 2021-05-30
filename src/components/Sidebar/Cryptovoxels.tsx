@@ -72,7 +72,7 @@ export default function Sidebar({ assets }: { assets: any }) {
       w="100%"
     >
       <Box p="20px">
-        <Tabs isFitted variant="solid-rounded" colorScheme="blue">
+        <Tabs isFitted variant="solid-rounded" colorScheme="purple">
           <TabList
             mb="1rem"
             bgColor="gray.600"

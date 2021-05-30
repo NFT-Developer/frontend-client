@@ -6,8 +6,9 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react';
-import { FiBell } from 'react-icons/fi';
+import { FiBell, FiSettings } from 'react-icons/fi';
 import { shortenAddress } from '../../utils';
+import { useSettingsDialog } from '../../context';
 
 export const UserProfile = ({
   address,
@@ -16,7 +17,7 @@ export const UserProfile = ({
   address: string;
   walletType: string;
 }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const [settingsDialogIsOpen, setSettingsDialogIsOpen] = useSettingsDialog();
 
   return (
     <>
@@ -24,8 +25,16 @@ export const UserProfile = ({
         <IconButton
           isRound
           size="sm"
+          aria-label="settings"
+          mr="0.5rem"
+          color="current"
+          icon={<FiSettings />}
+          onClick={() => setSettingsDialogIsOpen(!settingsDialogIsOpen)}
+        />
+        <IconButton
+          isRound
+          size="sm"
           aria-label="notifications"
-          // variant="ghost"
           color="current"
           icon={<FiBell />}
         />

@@ -63,7 +63,7 @@ export default function Pending({
       textAlign="center"
       transition="all 0.3s ease 0s"
       boxShadow="rgba(0, 0, 0, 0.15) 0px 2px 8px"
-      bgColor="blue.100"
+      bgColor="purple.100"
       color="white"
       onClick={() => retry()}
       userSelect="none"

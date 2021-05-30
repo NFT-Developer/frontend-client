@@ -31,12 +31,12 @@ export default function Option({
       key={id}
       onClick={onClick}
       cursor={!active ? 'pointer' : undefined}
-      bgColor={!active ? 'blue.100' : 'blue.200'}
+      bgColor={!active ? 'purple.100' : 'purple.200'}
       color="white"
       _hover={
         !active
           ? {
-              bgColor: 'blue.200',
+              bgColor: 'purple.200',
               textDecoration: 'none',
             }
           : undefined
