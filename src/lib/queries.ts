@@ -58,13 +58,13 @@ export const parcelPriceHistoryQuery = (x, y) => ({
   `,
 });
 
-export const estateBidHistoryQuery = (queryId) => ({
+export const estatePriceHistoryQuery = (queryId) => ({
   query: gql`
   {
     estates (where:{id:"estate-0x959e104e1a4db6317fa58f8295f586e1a978c297-${queryId}"}){
       id
-      parcels
-      {
+      size
+      parcels{
         id
         x
         y
@@ -75,17 +75,6 @@ export const estateBidHistoryQuery = (queryId) => ({
         price
         createdAt
         updatedAt
-          nft{
-            bids{
-              price
-              bidder
-              seller
-              status
-              createdAt
-              updatedAt
-              expiresAt
-            }
-          }
         }
       }
     }
@@ -93,7 +82,7 @@ export const estateBidHistoryQuery = (queryId) => ({
   `,
 });
 
-export const estateBidQuery = (queryId) => ({
+export const estateBidsQuery = (queryId) => ({
   query: gql`
   {
       estates (where:{id:"estate-0x959e104e1a4db6317fa58f8295f586e1a978c297-${queryId}"}){

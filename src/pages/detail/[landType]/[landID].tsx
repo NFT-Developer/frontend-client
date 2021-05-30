@@ -13,8 +13,8 @@ import client from '../../../lib/apollo';
 import {
   parcelBidHistoryQuery,
   parcelPriceHistoryQuery,
-  estateBidHistoryQuery,
-  estateBidQuery
+  estatePriceHistoryQuery,
+  estateBidsQuery
 } from '../../../lib/queries';
 import { useRouter } from 'next/router'
 
@@ -82,15 +82,15 @@ export default function Detail() {
 
   useEffect(() => {
     async function callDetailEndpoints () {
-      let bidHistory;
+      let history;
       if (landType === 'estate') {
-        bidHistory = await client.query(estateBidHistoryQuery(landID));
-        const estateBids = await client.query(estateBidQuery(landID));
-        console.log('zzzil', bidHistory, estateBids);
+        history = await client.query(estatePriceHistoryQuery(landID));
+        const estateBids = await client.query(estateBidsQuery(landID));
+        console.log('zzzil', history, estateBids);
 
       } else {
-        bidHistory = await client.query(estateBidHistoryQuery(landID));
-        const estateBids = await client.query(estateBidQuery(landID));
+        history = await client.query(estatePriceHistoryQuery(landID));
+        const estateBids = await client.query(estateBidsQuery(landID));
       }
     }
 
