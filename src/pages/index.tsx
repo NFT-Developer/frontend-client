@@ -7,6 +7,5 @@ export default function Redirect(): null {
   useEffect(() => {
     replace('/decentraland');
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return null;
 }

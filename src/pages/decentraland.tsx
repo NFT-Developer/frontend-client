@@ -4,6 +4,8 @@ import { Flex, Grid, Box, Image, List, ListItem } from '@chakra-ui/react';
 import { gql } from '@apollo/client';
 import client from '../lib/apollo';
 import Map from '../components/Map/Decentraland';
+import Universedata from '../components/Universedata/Universedata';
+
 
 const endpointName = 'assets';
 const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=decentraland`;
@@ -59,6 +61,8 @@ export default function Home() {
   }, []);
 
   return (
+    <>
+    <Universedata  metaverse={'decentraland'}/>
     <Flex position="relative" overflow="hidden" w="100%" minH="100vh">
       <Box w="60%" h="1000px">
         <Map />
@@ -67,6 +71,7 @@ export default function Home() {
         <Sidebar assets={assets} events={events} />
       </Box>
     </Flex>
+    </>
   );
 }
 
