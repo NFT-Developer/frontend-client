@@ -6,12 +6,12 @@ import {
   AccordionIcon,
   Box,
   Heading,
-  Text
+  Text,
 } from '@chakra-ui/react';
 import Stats from './Stats';
 import OfferTable from './OfferTable';
 import LineChart from '../LineChart';
-
+import Chart from './Chart';
 
 export default function MetricsAccordion({
   closest_district,
@@ -23,7 +23,7 @@ export default function MetricsAccordion({
   district_score,
   district_distance,
   price_history,
-  orderHistory
+  orderHistory,
 }) {
   return (
     <Accordion defaultIndex={[0]} allowMultiple>
@@ -37,7 +37,7 @@ export default function MetricsAccordion({
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4} display="flex">
-          <Box w='50%' >
+          <Box w="50%">
             <Stats
               plaza_score={plaza_score}
               plaza_distance={plaza_distance}
@@ -48,8 +48,12 @@ export default function MetricsAccordion({
             />
           </Box>
           <Box>
-            <Heading fontSize="lg">Closest District: {closest_district}</Heading>
-            <Text mt={4} fontSize="md">{insight}</Text>
+            <Heading fontSize="lg">
+              Closest District: {closest_district}
+            </Heading>
+            <Text mt={4} fontSize="md">
+              {insight}
+            </Text>
           </Box>
         </AccordionPanel>
       </AccordionItem>
@@ -63,22 +67,23 @@ export default function MetricsAccordion({
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          <OfferTable orderHistory={orderHistory}/>
+          <OfferTable orderHistory={orderHistory} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
         <h5>
           <AccordionButton>
             <Box flex="1" textAlign="left" fontWeight="bold">
-              Offers
+              Offers (time, price)
             </Box>
             <AccordionIcon />
           </AccordionButton>
         </h5>
         <AccordionPanel pb={4}>
-          <LineChart />
+          {/* <LineChart /> */}
+          <Chart />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
-  )
+  );
 }

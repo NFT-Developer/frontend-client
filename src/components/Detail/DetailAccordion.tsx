@@ -8,8 +8,11 @@ import {
   Table,
   Tbody,
   Tr,
-  Td
+  Link,
+  Td,
 } from '@chakra-ui/react';
+import { getEtherscanLink, shortenAddress } from '../../utils';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 export default function DetailAccordion({
   contract_address,
@@ -17,14 +20,14 @@ export default function DetailAccordion({
   estate_id,
   blockchain,
   description,
-  parcel_number
+  parcel_number,
 }) {
   return (
     <Accordion defaultIndex={[0]} allowMultiple>
       <AccordionItem>
         <h5>
           <AccordionButton>
-            <Box flex="1" textAlign="left"  fontWeight="bold">
+            <Box flex="1" textAlign="left" fontWeight="bold">
               Details
             </Box>
             <AccordionIcon />
@@ -35,7 +38,15 @@ export default function DetailAccordion({
             <Tbody>
               <Tr>
                 <Td>Contract Address</Td>
-                <Td>{contract_address}</Td>
+                <Td>
+                  <Link
+                    href={getEtherscanLink(3, contract_address, 'address')}
+                    isExternal
+                  >
+                    {shortenAddress(contract_address)}{' '}
+                    <ExternalLinkIcon mx="2px" />
+                  </Link>
+                </Td>
               </Tr>
               <Tr>
                 <Td>Token ID</Td>
@@ -50,35 +61,31 @@ export default function DetailAccordion({
                 <Td>{blockchain}</Td>
               </Tr>
             </Tbody>
-        </Table>
+          </Table>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
         <h5>
           <AccordionButton>
             <Box flex="1" textAlign="left" fontWeight="bold">
-            Description
+              Description
             </Box>
             <AccordionIcon />
           </AccordionButton>
         </h5>
-        <AccordionPanel pb={4}>
-          {description}
-        </AccordionPanel>
+        <AccordionPanel pb={4}>{description}</AccordionPanel>
       </AccordionItem>
       <AccordionItem>
         <h5>
           <AccordionButton>
             <Box flex="1" textAlign="left" fontWeight="bold">
-            Parcels
+              Parcels
             </Box>
             <AccordionIcon />
           </AccordionButton>
         </h5>
-        <AccordionPanel pb={4}>
-          {parcel_number}
-        </AccordionPanel>
+        <AccordionPanel pb={4}>{parcel_number}</AccordionPanel>
       </AccordionItem>
     </Accordion>
-  )
+  );
 }
