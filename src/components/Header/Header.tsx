@@ -48,13 +48,14 @@ export default function Header() {
         /> */}
       </Navbar.Links>
       <Navbar.UserProfile>
-        {!account ? (
-          <UserProfile
-            address="0x91c987bf62D25945dB517BDAa840A6c661374402"
-            walletType="Connected with metamask"
-          />
+        {account ? (
+          <UserProfile address={account} walletType="Connected with metamask" />
         ) : (
-          <Button onClick={() => setWalletDialogIsOpen(true)}>
+          <Button
+            onClick={() => setWalletDialogIsOpen(true)}
+            colorScheme="purple"
+            color="white"
+          >
             Connect wallet
           </Button>
         )}

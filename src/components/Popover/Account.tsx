@@ -22,6 +22,7 @@ import { ethers } from 'ethers';
 import { injected, walletlink } from '../../config/connectors';
 import { getIcon } from '../../theme';
 import { getEtherscanLink, shortenAddress } from '../../utils';
+import { useWalletDialog } from '../../context';
 
 export default function AccountPopover() {
   const { account, library, chainId, connector } = useWeb3React();
@@ -29,6 +30,7 @@ export default function AccountPopover() {
     account || ethers.constants.AddressZero,
   );
   const [ENSName, setENSName] = useState('');
+  const [walletDialogIsOpen, setWalletDialogIsOpen] = useWalletDialog();
 
   useEffect(() => {
     if (library && account) {
@@ -105,7 +107,9 @@ export default function AccountPopover() {
         </PopoverBody>
         <PopoverFooter d="flex" justifyContent="flex-end">
           <ButtonGroup size="sm" textAlign="right">
-            {/* <Button onClick={useToggleWalletDialog()}>Change wallets</Button> */}
+            <Button onClick={() => setWalletDialogIsOpen(true)}>
+              Change wallets
+            </Button>
             <Button
               color="white"
               onClick={() => (connector as any).close()}

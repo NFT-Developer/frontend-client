@@ -47,10 +47,15 @@ export default function Wallets() {
   const [isDesktop] = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
 
   // close on connection, when logged out before
+  // useEffect(() => {
+  //   if (account && !previousAccount && walletDialogIsOpen)
+  //     setWalletDialogIsOpen(false);
+  // }, [account, previousAccount, walletDialogIsOpen, setWalletDialogIsOpen]);
+
   useEffect(() => {
     if (account && !previousAccount && walletDialogIsOpen)
-      setWalletDialogIsOpen(false);
-  }, [account, previousAccount, walletDialogIsOpen, setWalletDialogIsOpen]);
+      setWalletDialogIsOpen(!walletDialogIsOpen);
+  }, [account, previousAccount, setWalletDialogIsOpen, walletDialogIsOpen]);
 
   // always reset to account view
   useEffect(() => {
@@ -243,7 +248,7 @@ export default function Wallets() {
   return (
     <Modal
       isOpen={walletDialogIsOpen}
-      onClose={setWalletDialogIsOpen(false)}
+      onClose={() => setWalletDialogIsOpen(false)}
       header="Connect a wallet"
     >
       {getModalContent()}

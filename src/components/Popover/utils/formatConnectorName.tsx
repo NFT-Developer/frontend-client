@@ -14,5 +14,5 @@ export default function formatConnectorName(connector: any) {
     )
     .map((k) => SUPPORTED_WALLETS[k].name)[0];
 
-  return <Text>Connected with {{ name }}</Text>;
+  return <Text>Connected with {name}</Text>;
 }
