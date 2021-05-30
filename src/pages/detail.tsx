@@ -7,6 +7,9 @@ import DetailAccordion from '../components/Detail/DetailAccordion';
 import AlertBox from '../components/Detail/AlertBox';
 import MetricsAccordion from '../components/Detail/MetricsAccordion';
 import DetailCard from '../components/Detail/DetailCard';
+import { useEffect } from 'react';
+import { gql } from '@apollo/client';
+import client from '../lib/apollo';
 
 const asset = {
   metaverse: 'Decentraland',
@@ -67,6 +70,74 @@ export default function Detail() {
     price_history,
     offers
   } = asset;
+
+  const parcelBidHistoryQuery = (x , y) => ({
+    query: gql`{
+    parcels(where:{x:${x} y:${y}}){
+      id
+      x
+      y
+      estate{
+        id
+        size
+      }
+      nft{
+        orders{
+        id
+        status
+        price
+        createdAt
+        updatedAt
+          nft{
+            bids{
+              id
+              nftAddress
+              price
+              bidder
+              seller
+              status
+              createdAt
+              updatedAt
+              expiresAt
+            }
+          }
+          }
+      }
+    }
+  }
+  `
+});
+
+  const parcelPriceHistoryQuery = (x, y) => ({
+    query: gql`
+    {
+      parcels(where:{x:${x} y:${y}}){
+        id
+        x
+        y
+        nft{
+          orders{
+          id
+          status
+          price
+          createdAt
+          updatedAt
+            }
+        }
+      }
+    }
+    `,
+  });
+
+  useEffect(() => {
+    async function blah () {
+      const data = await client.query(parcelBidHistoryQuery(2, -150));
+
+      console.log('zzz', data);
+    }
+
+    blah();
+  }, []);
 
   return (
     <Container maxW="container.xl" h="100%">

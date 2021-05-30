@@ -44,7 +44,7 @@ export default function Map() {
         console.log('historicalData:', historicalData.values);
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }, []);
 

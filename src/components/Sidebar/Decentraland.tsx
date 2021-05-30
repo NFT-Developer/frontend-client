@@ -16,6 +16,7 @@ import {
   TabPanel,
   Text,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 
 export default function Sidebar({
   assets,
@@ -24,13 +25,23 @@ export default function Sidebar({
   assets: any;
   events: any;
 }) {
-  function Card(asset) {
-    const { image, name, external_link, traits } = asset.asset;
 
+  function Card(asset) {
+    const toPass = asset.asset.traits?.type === 'Estate' ? {
+      id: asset.asset.token_id,
+      type: asset.asset.traits.type
+    } : null;
+
+    const router = useRouter()
+    const pushRoute = () => {
+      router.push(`/detail/${toPass.type.toLowerCase()}/${toPass.id}`);
+    }
+
+    const { image, name, external_link, traits } = asset.asset;
     const { type, size, distance_to_district, distance_to_road } = traits;
 
     return (
-      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" onClick={pushRoute}>
         <Image src={image} htmlWidth={'100%'} />
         <Box p="6">
           <Box
