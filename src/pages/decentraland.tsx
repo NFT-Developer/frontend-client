@@ -9,22 +9,28 @@ const endpointName = 'assets';
 const url = `https://api.opensea.io/api/v1/${endpointName}?order_direction=desc&offset=0&limit=20&collection=decentraland`;
 const options = { method: 'GET' };
 
-const parseOpenSeaAssetResponse = (res) =>
-  res.map((item) => ({
+const parseOpenSeaAssetResponse = (res) => {
+  return res.map((item) => {
+    const token_id =  item.traits.find((obj) => obj.trait_type === 'Type').value === 'Estate' ? item.token_id : null;
+
+    return {
     image: item.image_preview_url,
     name: item.name,
     external_link: item.external_link,
+    token_id,
     traits: {
       type: item.traits.find((obj) => obj.trait_type === 'Type').value,
       size: item.traits.find((obj) => obj.trait_type === 'Size').value,
       distance_to_district: item.traits.find(
         (obj) => obj.trait_type.toString() === 'Distance to District',
-      )?.value,
-      distance_to_road: item.traits.find(
-        (obj) => obj.trait_type === 'Distance to Road',
-      )?.value,
-    },
-  }));
+        )?.value,
+        distance_to_road: item.traits.find(
+          (obj) => obj.trait_type === 'Distance to Road',
+          )?.value,
+        },
+      }
+    })
+  };
 
 export default function Home() {
   const [assets, setAssets] = useState([]);

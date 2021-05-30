@@ -3,10 +3,20 @@ import {
   Grid,
   Container,
 } from '@chakra-ui/react';
-import DetailAccordion from '../components/Detail/DetailAccordion';
-import AlertBox from '../components/Detail/AlertBox';
-import MetricsAccordion from '../components/Detail/MetricsAccordion';
-import DetailCard from '../components/Detail/DetailCard';
+import DetailAccordion from '../../../components/Detail/DetailAccordion';
+import AlertBox from '../../../components/Detail/AlertBox';
+import MetricsAccordion from '../../../components/Detail/MetricsAccordion';
+import DetailCard from '../../../components/Detail/DetailCard';
+import { useEffect } from 'react';
+import { gql } from '@apollo/client';
+import client from '../../../lib/apollo';
+import {
+  parcelBidHistoryQuery,
+  parcelPriceHistoryQuery,
+  estateBidHistoryQuery,
+  estateBidQuery
+} from '../../../lib/queries';
+import { useRouter } from 'next/router'
 
 const asset = {
   metaverse: 'Decentraland',
@@ -67,6 +77,25 @@ export default function Detail() {
     price_history,
     offers
   } = asset;
+  const router = useRouter()
+  const { landType, landID} = router.query
+
+  useEffect(() => {
+    async function callDetailEndpoints () {
+      let bidHistory;
+      if (landType === 'estate') {
+        bidHistory = await client.query(estateBidHistoryQuery(landID));
+        const estateBids = await client.query(estateBidQuery(landID));
+        console.log('zzzil', bidHistory, estateBids);
+
+      } else {
+        bidHistory = await client.query(estateBidHistoryQuery(landID));
+        const estateBids = await client.query(estateBidQuery(landID));
+      }
+    }
+
+    callDetailEndpoints();
+  }, [landType, landID]);
 
   return (
     <Container maxW="container.xl" h="100%">
