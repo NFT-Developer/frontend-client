@@ -44,7 +44,7 @@ export default function Sidebar({
       router.push(`/detail/${toPass.type.toLowerCase()}/${toPass.id}`);
     };
 
-    const { image, name, external_link, traits } = asset.asset;
+    // const { image, name, external_link, traits } = asset.asset;
     const { type, size, distance_to_district, distance_to_road } = traits;
 
     return (
@@ -56,7 +56,7 @@ export default function Sidebar({
         onClick={pushRoute}
       >
         <Image src={image} htmlWidth={'100%'} />
-        <Box p="6">
+        <Box p="6" bgColor="gray.700">
           <Box
             mt="1"
             fontWeight="semibold"

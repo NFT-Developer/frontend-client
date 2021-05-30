@@ -23,7 +23,7 @@ export default function Sidebar({ assets }: { assets: any }) {
     return (
       <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
         <Image src={image} htmlWidth={'100%'} />
-        <Box p="6">
+        <Box p="6" bgColor="gray.700">
           <Box
             mt="1"
             fontWeight="semibold"
