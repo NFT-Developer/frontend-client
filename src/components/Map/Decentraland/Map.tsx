@@ -1,12 +1,10 @@
 import { Atlas, Layer, Coord } from 'decentraland-ui';
-import { Box } from '@chakra-ui/react';
+import { Box, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import results from './heatmap-data.json';
 
 export default function Map() {
   const [tiles, setTiles] = useState();
-  const [events, setEvents] = useState([]);
-  const [heatMap, setHeatMap] = useState([]);
 
   // tile layout with districts and roads
   useEffect(() => {
@@ -46,38 +44,6 @@ export default function Map() {
       // console.error(error);
     }
   }, []);
-
-  const heatLayer: Layer = (x, y) => {
-    const key = x + ',' + y;
-    //@ts-ignore
-    if (tiles && tiles[key] && 'heat' in tiles[key]) {
-      return { color: '#f00' };
-    }
-    return null;
-  };
-
-  //events layer
-  useEffect(() => {
-    (async () => {
-      var events = [];
-      var response = await fetch('https://events.decentraland.org/api/events/');
-      var data = await response.json();
-      events = data.data;
-      setEvents(events);
-    })();
-  }, []);
-
-  const eventsLayer = (x, y) => {
-    // const key = x + ',' + y;
-    // if (events && events[key]) {
-    //   if (enabled && enabled[key] && 'enabled' in enabled[key]) {
-    //     return combinedColor;
-    //   } else {
-    //     return singleEventColor;
-    //   }
-    // }
-    return null;
-  };
 
   let selected: Coord[] = [];
 
@@ -131,20 +97,24 @@ export default function Map() {
     }
     return null;
   };
+  const [layers, setLayers] = useState([hoverStrokeLayer, hoverFillLayer]);
+
+  useEffect(() => {
+    setLayers([hoverStrokeLayer, hoverFillLayer, forSaleLayer]);
+  }, []);
+
   return (
     <Box h="80vh">
-      <Atlas
-        tiles={tiles}
-        layers={[
-          eventsLayer,
-          forSaleLayer,
-          hoverStrokeLayer,
-          hoverFillLayer,
-          heatLayer,
-        ]}
-        onHover={handleHover}
-        onClick={handleClick}
-      />
+      {layers ? (
+        <Atlas
+          tiles={tiles}
+          layers={[hoverStrokeLayer, hoverFillLayer, forSaleLayer]}
+          onHover={handleHover}
+          onClick={handleClick}
+        />
+      ) : (
+        <Spinner />
+      )}
     </Box>
   );
 }

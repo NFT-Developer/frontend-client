@@ -14,6 +14,8 @@ const parseOpenSeaAssetResponse = (res) =>
     image: item.image_preview_url,
     name: item.name,
     external_link: item.external_link,
+    traits: item.traits,
+    last_sale: item.last_sale,
     // traits: {
     //   type: item.traits.find((obj) => obj.trait_type === 'Type').value,
     //   size: item.traits.find((obj) => obj.trait_type === 'Size').value,

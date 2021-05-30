@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
   useColorModeValue as mode,
+  Checkbox,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiSearch } from 'react-icons/fi';
@@ -47,6 +48,16 @@ export default function Navbar() {
               Search
             </Button>
           </HStack>
+          <Checkbox colorScheme="cyan" isChecked={true}>
+            For sale
+          </Checkbox>
+          <Checkbox colorScheme="cyan" isDisabled>
+            Events
+          </Checkbox>
+          <Checkbox colorScheme="cyan" isDisabled>
+            Foot traffic
+          </Checkbox>
+
           <Select placeholder="Price" isDisabled maxW="10rem">
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>

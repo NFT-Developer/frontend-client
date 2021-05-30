@@ -1,4 +1,4 @@
-import { Box, Center, Button } from '@chakra-ui/react';
+import { Box, Center, Button, IconButton } from '@chakra-ui/react';
 import { useWalletDialog } from '../../context';
 import { Logo } from './Logo';
 import { Navbar } from './Navbar';
@@ -10,6 +10,8 @@ import CryptovoxelsLogo from '../../assets/Cryptovoxels';
 import DecentralandLogo from '../../assets/Decentraland';
 import SomniumSpaceLogo from '../../assets/SomniumSpace';
 import TheSandboxLogo from '../../assets/TheSandbox';
+import Ocean from '../../assets/Ocean';
+import { AiFillGithub } from 'react-icons/ai';
 
 export default function Header() {
   const [walletDialogIsOpen, setWalletDialogIsOpen] = useWalletDialog();
@@ -47,17 +49,66 @@ export default function Header() {
           logo={TheSandboxLogo}
         /> */}
       </Navbar.Links>
+
       <Navbar.UserProfile>
         {account ? (
-          <UserProfile address={account} walletType="Connected with metamask" />
+          <>
+            <IconButton
+              as="a"
+              aria-label="github"
+              href="https://github.com/memeta-codes/data"
+              icon={<AiFillGithub />}
+              isRound
+              target="_blank"
+              size="sm"
+            />
+
+            <UserProfile
+              address={account}
+              walletType="Connected with metamask"
+            />
+            <Button
+              as="a"
+              target="_blank"
+              href="https://github.com/memeta-codes/data"
+              colorScheme="purple"
+              color="white"
+              variant="outline"
+              leftIcon={<Ocean />}
+            >
+              Get data from Ocean
+            </Button>
+          </>
         ) : (
-          <Button
-            onClick={() => setWalletDialogIsOpen(true)}
-            colorScheme="purple"
-            color="white"
-          >
-            Connect wallet
-          </Button>
+          <>
+            <IconButton
+              as="a"
+              aria-label="github"
+              href="https://github.com/memeta-codes/data"
+              icon={<AiFillGithub />}
+              isRound
+              target="_blank"
+              size="sm"
+            />
+            <Button
+              as="a"
+              target="_blank"
+              href="https://github.com/memeta-codes/data"
+              colorScheme="purple"
+              color="white"
+              variant="outline"
+              leftIcon={<Ocean />}
+            >
+              Get data from Ocean
+            </Button>
+            <Button
+              onClick={() => setWalletDialogIsOpen(true)}
+              colorScheme="purple"
+              color="white"
+            >
+              Connect wallet
+            </Button>
+          </>
         )}
       </Navbar.UserProfile>
     </Navbar>

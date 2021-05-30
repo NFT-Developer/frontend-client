@@ -8,15 +8,19 @@ import {
   Grid,
   GridItem,
   Button,
-  Select,
+  Img,
   Tabs,
   TabList,
   TabPanels,
   Tab,
   TabPanel,
   Text,
+  chakra,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import client from '../../lib/apollo';
+import { useEffect, useState } from 'react';
+import { gql } from '@apollo/client';
 
 export default function Sidebar({
   assets,
@@ -25,23 +29,32 @@ export default function Sidebar({
   assets: any;
   events: any;
 }) {
-
   function Card(asset) {
-    const toPass = asset.asset.traits?.type === 'Estate' ? {
-      id: asset.asset.token_id,
-      type: asset.asset.traits.type
-    } : null;
+    const toPass =
+      asset.asset.traits?.type === 'Estate'
+        ? {
+            id: asset.asset.token_id,
+            type: asset.asset.traits.type,
+          }
+        : null;
+    const { image, name, external_link, traits, id } = asset.asset;
 
-    const router = useRouter()
+    const router = useRouter();
     const pushRoute = () => {
       router.push(`/detail/${toPass.type.toLowerCase()}/${toPass.id}`);
-    }
+    };
 
     const { image, name, external_link, traits } = asset.asset;
     const { type, size, distance_to_district, distance_to_road } = traits;
 
     return (
-      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" onClick={pushRoute}>
+      <Box
+        maxW="sm"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        onClick={pushRoute}
+      >
         <Image src={image} htmlWidth={'100%'} />
         <Box p="6">
           <Box
@@ -65,6 +78,7 @@ export default function Sidebar({
               <List>
                 <ListItem>type: {type}</ListItem>
                 <ListItem>size: {size}</ListItem>
+
                 <ListItem>
                   from district:{' '}
                   {distance_to_district ? distance_to_district : 'n/a'}
@@ -72,6 +86,7 @@ export default function Sidebar({
                 <ListItem>
                   from road: {distance_to_road ? distance_to_road : 'n/a'}
                 </ListItem>
+                <ListItem>Price: {id && id ? id : '-'} MANA</ListItem>
               </List>
             </Box>
           </Box>
@@ -79,6 +94,39 @@ export default function Sidebar({
       </Box>
     );
   }
+
+  const [totals, setTotals] = useState({
+    estateTotal: '',
+    parcelTotal: '',
+    totalParcels: '',
+  });
+
+  const getMetaverseQuery = (meta: string) => {
+    if (meta === 'decentraland') {
+      return {
+        query: gql`
+          {
+            counts {
+              parcelTotal
+              estateTotal
+            }
+          }
+        `,
+      };
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const query = getMetaverseQuery('decentraland');
+      const result = await client.query(query);
+      setTotals({
+        estateTotal: result.data.counts[0].estateTotal,
+        parcelTotal: result.data.counts[0].parcelTotal,
+        totalParcels: '90,601',
+      });
+    })();
+  }, []);
 
   function EventCard(event) {
     const { image, name, x, y, start_at, url } = event.event;
@@ -189,23 +237,43 @@ export default function Sidebar({
               </Grid>
             </TabPanel>
             <TabPanel>
-              <Flex w="100%" pt="3rem" direction="column">
-                <Text fontSize="1.25rem">About Decentraland</Text>
-                <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">🏠 Total parcel</Text>
-                  <Text>400</Text>
+              <Flex w="100%" direction="column">
+                <Flex
+                  justify="space-between"
+                  align="center"
+                  mb="0.25rem"
+                  py="0.5rem"
+                >
+                  <Text fontSize="1.5rem" fontWeight="600">
+                    About Decentraland
+                  </Text>
+                  <Text>$0.7656</Text>
                 </Flex>
-                <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">💰 Active wallets</Text>
-                  <Text>250</Text>
+                <Flex justify="space-between" mb="0.25rem" py="0.5rem">
+                  <Text fontWeight="700">🏠 Active parcels</Text>
+                  <Text>{totals.parcelTotal}</Text>
                 </Flex>
-                <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">💵 Primary sales</Text>
-                  <Text>100</Text>
+                <Flex justify="space-between" mb="0.25rem" py="0.5rem">
+                  <Text fontWeight="700">🏡 Active estates</Text>
+                  <Text>{totals.estateTotal}</Text>
                 </Flex>
-                <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-                  <Text fontWeight="700">💎 Secondary sales</Text>
-                  <Text>200</Text>
+                <Flex justify="space-between" mb="0.25rem" py="0.5rem">
+                  <Text fontWeight="700">🏘 Total parcels</Text>
+                  <Text>{totals.totalParcels}</Text>
+                </Flex>
+                <Flex justify="space-between" mb="0.25rem" py="0.5rem">
+                  <Text fontWeight="700">🪙 Avg land price</Text>
+                  <Text>Ξ8.69</Text>
+                </Flex>
+              </Flex>
+              {/* <SquareGraph /> */}
+              <Flex w="100%" justify="center" align="center" direction="column">
+                <Img src="./square.png" h="14rem" />
+                <Flex justify="space-between" mb="0.25rem" py="0.5rem">
+                  <Text fontWeight="700">
+                    Unique addresses:{' '}
+                    <chakra.span fontWight="400">1049</chakra.span>
+                  </Text>
                 </Flex>
               </Flex>
             </TabPanel>
@@ -229,51 +297,5 @@ export default function Sidebar({
         </Tabs>
       </Box>
     </Flex>
-    // <Flex
-    //   width="sm"
-    //   position="relative"
-    //   direction="column"
-    //   borderLeftWidth="1px"
-    //   h="100%"
-    //   w="100%"
-    //   px="1rem"
-    // >
-    //   <Box p="20px">
-    //     <Tabs isFitted variant="soft-rounded" colorScheme="green">
-    //       <TabList>
-    //         <Tab>Listings</Tab>
-    //         <Tab>Details</Tab>
-    //       </TabList>
-    //       <TabPanels>
-    //         <TabPanel >
-    //           <Grid templateColumns="repeat(4, 1fr)" gap={6} w="100%">
-    //             <GridItem colSpan={2} bgColor="red" h="300px" />
-    //             <GridItem colSpan={2} bgColor="red" h="300px" />
-    //             <GridItem colSpan={2} bgColor="red" h="300px" />
-    //             <GridItem colSpan={2} bgColor="red" h="300px" />
-    //             <GridItem colSpan={2} bgColor="red" h="300px" />
-    //           </Grid>
-    //         </TabPanel>
-    //         <TabPanel>
-    //           <Flex w="100%" pt="3rem" direction="column">
-    //             <Text fontSize="1.25rem">About Decentraland</Text>
-    //             <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-    //               <Text fontWeight="700">Total parcel</Text>
-    //               <Text>400</Text>
-    //             </Flex>
-    //             <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-    //               <Text fontWeight="700">Total parcel</Text>
-    //               <Text>400</Text>
-    //             </Flex>
-    //             <Flex justify="space-between" mb="0.5rem" py="1.25rem">
-    //               <Text fontWeight="700">Total parcel</Text>
-    //               <Text>400</Text>
-    //             </Flex>
-    //           </Flex>
-    //         </TabPanel>
-    //       </TabPanels>
-    //     </Tabs>
-    //   </Box>
-    // </Flex>
   );
 }

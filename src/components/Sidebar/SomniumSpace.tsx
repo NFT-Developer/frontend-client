@@ -18,9 +18,8 @@ import {
 
 export default function Sidebar({ assets }: { assets: any }) {
   function Card(asset) {
-    const { image, name, external_link, traits } = asset.asset;
-
-    // const { type, size, distance_to_district, distance_to_road } = traits;
+    const { image, name, external_link, traits, last_sale } = asset.asset;
+    console.log('last_sale:', last_sale);
 
     return (
       <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
@@ -45,14 +44,16 @@ export default function Sidebar({ assets }: { assets: any }) {
               textTransform="uppercase"
             >
               <List>
-                {/* <ListItem>type: {type}</ListItem>
-                <ListItem>size: {size}</ListItem> */}
                 <ListItem>
-                  from district:{' '}
-                  {/* {distance_to_district ? distance_to_district : 'n/a'} */}
+                  Price:{' '}
+                  {last_sale && last_sale.total_price
+                    ? last_sale.total_price * 1e-18
+                    : '-'}{' '}
+                  Dai
                 </ListItem>
+                <ListItem>Parcel size: {traits[0].value}</ListItem>
                 <ListItem>
-                  {/* from road: {distance_to_road ? distance_to_road : 'n/a'} */}
+                  Roadside status: {traits[2] ? traits[2].value : '-'}
                 </ListItem>
               </List>
             </Box>
@@ -82,6 +83,7 @@ export default function Sidebar({ assets }: { assets: any }) {
           >
             <Tab>Listings</Tab>
             <Tab>Details</Tab>
+            <Tab>Events</Tab>
           </TabList>
           <TabPanels>
             <TabPanel
@@ -121,6 +123,7 @@ export default function Sidebar({ assets }: { assets: any }) {
                 </Flex>
               </Flex>
             </TabPanel>
+            <TabPanel>events</TabPanel>
           </TabPanels>
         </Tabs>
       </Box>
