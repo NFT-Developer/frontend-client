@@ -50,6 +50,13 @@ export default function Cryptovoxels() {
               <TileLayer url="https://map.cryptovoxels.com/tile?z={z}&x={x}&y={y}" />
             )}
           </Map>
+          {/* <Box
+            className="work-video"
+            as="iframe"
+            // borderRadius="0px 0px 25px 25px"
+            src={`https://map.somniumspace.com/`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></Box> */}
         </Box>
       </Box>
       <Box w="40%" h="1000px" mr={5}>
